@@ -1,0 +1,27 @@
+.navbar {
+  @apply flex justify-between items-center px-8 py-2 shadow-sm;
+}
+
+.brand {
+  font-size: 1.2em;
+}
+
+.brand span {
+  @apply font-extrabold uppercase;
+}
+
+.links_list {
+  @apply flex list-none;
+}
+
+.links_list li {
+  @apply mr-4;
+}
+
+.links_list li a {
+  @apply p-1.5;
+}
+
+.active {
+  @applu bg-black text-white;
+}

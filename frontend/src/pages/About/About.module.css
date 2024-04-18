@@ -1,0 +1,11 @@
+.about {
+  @apply text-center flex flex-col items-center;
+}
+
+.about p {
+  @apply text-gray-600 mb-8;
+}
+
+.about a {
+  @apply block mt-4 px-4 py-2;
+}

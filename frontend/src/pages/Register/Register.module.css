@@ -1,0 +1,7 @@
+.register {
+  @apply text-center;
+}
+
+.register p {
+  @apply text-gray-500;
+}

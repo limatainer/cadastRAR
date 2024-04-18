@@ -1,0 +1,27 @@
+.post_detail {
+  @apply mb-8 text-center flex space-x-8;
+}
+
+.post_detail img {
+  @apply max-w-[600px] h-20 w-20 md:h-28 md:w-28 rounded-md;
+}
+
+.post_detail h2 {
+  @apply mb-4;
+}
+
+.post_detail .tags {
+  @apply mb-5 flex;
+}
+
+.tags p {
+  @apply mr-2;
+}
+
+.tags span {
+  @apply font-bold;
+}
+
+.createdby {
+  @apply italic text-gray-600 text-sm mb-4;
+}
