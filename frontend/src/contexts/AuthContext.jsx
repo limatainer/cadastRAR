@@ -1,5 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-import { useContext, createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 const AuthContext = createContext();
 

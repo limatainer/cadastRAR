@@ -1,85 +1,51 @@
 import { NavLink } from 'react-router-dom';
-
 import { useAuthentication } from '../hooks/useAuthentication';
-
 import { useAuthValue } from '../contexts/AuthContext';
 
-import styles from './Navbar.module.css';
-
-const Navbar = () => {
+export default function Navbar() {
   const { logout } = useAuthentication();
   const { user } = useAuthValue();
 
+  const buttonClasses =
+    'inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900';
+
   return (
-    <nav className={styles.navbar}>
-      <NavLink className={styles.brand} to="/">
-        Cadast <span>rAr</span>
-      </NavLink>
-      <ul className={styles.links_list}>
-        <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? styles.active : '')}
-          >
-            Pessoas
-          </NavLink>
-        </li>
-        {!user && (
-          <>
-            <li>
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? styles.active : '')}
+    <nav className="bg-black p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <NavLink className="text-white text-2xl font-bold" to="/">
+          CadastRAR
+        </NavLink>
+        <ul className="flex space-x-4" role="menu">
+          {!user ? (
+            <>
+              <li role="none">
+                <NavLink to="/login" className={buttonClasses} role="menuitem">
+                  Login
+                </NavLink>
+              </li>
+              <li role="none">
+                <NavLink
+                  to="/register"
+                  className={buttonClasses}
+                  role="menuitem"
+                >
+                  Sign Up
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <li role="none">
+              <button
+                onClick={logout}
+                className={buttonClasses}
+                role="menuitem"
               >
-                Entrar
-              </NavLink>
+                Sair
+              </button>
             </li>
-            <li>
-              <NavLink
-                to="/register"
-                className={({ isActive }) => (isActive ? styles.active : '')}
-              >
-                Cadastrar
-              </NavLink>
-            </li>
-          </>
-        )}
-        {user && (
-          <>
-            <li>
-              <NavLink
-                to="/posts/create"
-                className={({ isActive }) => (isActive ? styles.active : '')}
-              >
-                Novo Registro
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard"
-                className={({ isActive }) => (isActive ? styles.active : '')}
-              >
-                Dashboard
-              </NavLink>
-            </li>
-          </>
-        )}
-        <li>
-          <NavLink
-            to="/about"
-            className={({ isActive }) => (isActive ? styles.active : '')}
-          >
-            Documentos
-          </NavLink>
-        </li>
-        {user && (
-          <li>
-            <button onClick={logout}>Sair</button>
-          </li>
-        )}
-      </ul>
+          )}
+        </ul>
+      </div>
     </nav>
   );
-};
-
-export default Navbar;
+}
