@@ -34,16 +34,41 @@ export default function Navbar() {
               </li>
             </>
           ) : (
-            <li role="none">
-              <button
-                onClick={logout}
-                className={buttonClasses}
-                role="menuitem"
-              >
-                Sair
-              </button>
-            </li>
+            <>
+              <li role="none">
+                <NavLink
+                  to="/submissions"
+                  className={buttonClasses}
+                  role="menuitem"
+                >
+                  Submissions
+                </NavLink>
+              </li>
+              <li role="none">
+                <NavLink
+                  to="/posts/create"
+                  className={buttonClasses}
+                  role="menuitem"
+                >
+                  Register
+                </NavLink>
+              </li>
+              <li role="none">
+                <button
+                  onClick={logout}
+                  className={buttonClasses}
+                  role="menuitem"
+                >
+                  Sair
+                </button>
+              </li>
+            </>
           )}
+          <li>
+            <NavLink to="/about" className={buttonClasses} role="menuitem">
+              About
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

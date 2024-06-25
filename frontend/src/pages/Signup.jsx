@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuthentication } from '../hooks/useAuthentication';
 import { NavLink } from 'react-router-dom';
-
+import Logo from '/logo.png';
 export default function Signup() {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
@@ -44,12 +44,8 @@ export default function Signup() {
           to="/"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img
-            className="w-8 h-8 mr-2"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-            alt="logo"
-          />
-          Flowbite
+          <img className="w-16 h-16 mr-2" src={Logo} alt="logo" />
+          Welcome to CadastRAR
         </NavLink>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -131,7 +127,7 @@ export default function Signup() {
                     aria-describedby="terms"
                     type="checkbox"
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    required=""
+                    required
                   />
                 </div>
                 <div className="ml-3 text-sm">

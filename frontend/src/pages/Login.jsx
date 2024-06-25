@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useAuthentication } from '../hooks/useAuthentication';
 import { NavLink } from 'react-router-dom';
 
+import Logo from '/logo.png';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+  const [rememberMe, setRememberMe] = useState(false);
   const { login, error: authError, loading } = useAuthentication();
 
   const handleSubmit = async (e) => {
@@ -15,7 +16,15 @@ export default function Login() {
 
     const user = { email, password };
     const res = await login(user);
-
+    if (res && res.success) {
+      if (rememberMe) {
+        localStorage.setItem('user', JSON.stringify(res.user));
+      } else {
+        sessionStorage.setItem('user', JSON.stringify(res.user));
+      }
+    } else {
+      setError(res.error);
+    }
     console.log(res);
   };
 
@@ -34,15 +43,11 @@ export default function Login() {
               to="/"
               className="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
             >
-              <img
-                className="w-8 h-8 mr-2"
-                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-                alt="logo"
-              />
               Welcome Back
+              <img className="w-16 h-16 mr-2" src={Logo} alt="logo" />
             </NavLink>
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Sign in to your account
+              Sign in to continue
             </h1>
           </header>
           <form className="space-y-6" onSubmit={handleSubmit}>
@@ -90,6 +95,8 @@ export default function Login() {
                     aria-describedby="remember"
                     type="checkbox"
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
                   />
                 </div>
                 <div className="ml-3 text-sm">
