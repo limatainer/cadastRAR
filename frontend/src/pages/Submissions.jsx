@@ -16,11 +16,6 @@ export default function Submissions() {
   } = useFetchDocuments('posts', null, uid);
   const { deleteDocument } = useDeleteDocument('posts');
 
-  const buttonStyle =
-    'inline-flex justify-center items-center py-2 px-4 m-2 text-base font-medium text-white rounded-lg bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800';
-  const textStyle =
-    'mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400';
-
   const navigate = useNavigate();
 
   const [query, setQuery] = useState('');
@@ -46,19 +41,19 @@ export default function Submissions() {
           className="m-4 p-2 rounded-lg "
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button className={buttonStyle}>Pesquisar</button>
+        <button className="btn">Pesquisar</button>
       </form>
 
-      <p className={textStyle}>All users submitted by you:</p>
+      <p className="txtComments">All users submitted by you:</p>
       {/* Handle loading and error states */}
-      {loading && <p className={textStyle}>Loading...</p>}
+      {loading && <p className="txtComments">Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
       {/* Display a message if no posts are found */}
       {posts && posts.length === 0 && (
         <div className="flex flex-col items-center">
-          <p className={textStyle}>No users found</p>
-          <Link to="/posts/create" className={buttonStyle}>
+          <p className="txtComments">No users found</p>
+          <Link to="/posts/create" className="btn">
             Register new user
           </Link>
         </div>
@@ -76,16 +71,13 @@ export default function Submissions() {
                 {post.title}
               </p>
               <div className="flex space-x-2">
-                <Link to={`/posts/${post.id}`} className={buttonStyle}>
+                <Link to={`/posts/${post.id}`} className="btn">
                   View
                 </Link>
-                <Link to={`/posts/edit/${post.id}`} className={buttonStyle}>
+                <Link to={`/posts/edit/${post.id}`} className="btn">
                   Edit
                 </Link>
-                <button
-                  onClick={() => deleteDocument(post.id)}
-                  className={buttonStyle}
-                >
+                <button onClick={() => deleteDocument(post.id)} className="btn">
                   Delete
                 </button>
               </div>
