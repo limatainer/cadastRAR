@@ -10,6 +10,6 @@
     @apply mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400;
   }
   .icons {
-    @apply text-5xl;
+    @apply text-5xl mr-5 mb-5 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-400;
   }
 }
